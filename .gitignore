@@ -9,3 +9,5 @@ __pycache__/
 *.logs
 *output/*
 *.env*
+*config/settings.yaml
+*settings.yaml

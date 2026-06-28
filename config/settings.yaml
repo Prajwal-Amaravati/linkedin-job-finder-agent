@@ -223,8 +223,8 @@ application_submitter:
 #      Look for "chat":{"id":-100XXXXXXXXXX}
 telegram:
   enabled: true
-  bot_token: "8643029486:AAEqV5HR3HD9ZoQL2Oy7f6qNCh1GXNOPqvo"
-  chat_id: "-1003873672658"
+  bot_token: ""
+  chat_id: ""
   delay_between_messages: 1.5      # seconds between Telegram messages
   max_messages_per_run: 25         # max jobs to send per run
   send_resume_pdf: true            # attach tailored resume PDF with each job
