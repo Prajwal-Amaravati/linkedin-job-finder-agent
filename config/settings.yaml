@@ -1,0 +1,255 @@
+application:
+  name: LinkedIn Resume Optimization and Application Automation
+  version: 2.0.0
+
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  log_file: "logs/agent.log"
+
+# ── Candidate Profile ──────────────────────────────────────────────
+candidate:
+  name: "Prajwal S"
+  email: "s.prajwal.amaravati@gmail.com"
+  phone: "+91 8217088794"
+  location: "Bangalore, India"
+  resume_path: "/Users/prajwal/code/linked_in_mcp/linkedin-resume-agent/Prajwal Software Engineering.docx.pdf"
+  linkedin_profile: "https://www.linkedin.com/in/prajwal-amaravati-6b4554166/"
+
+# ── Job Search Criteria ────────────────────────────────────────────
+job_search:
+  # Target roles (in priority order)
+  target_roles:
+    - "Senior Software Engineer"
+    - "Senior Software Developer"
+    - "Tech Lead"
+    - "Technical Lead"
+    - "Staff Software Engineer"
+    - "Lead Software Engineer"
+    - "Senior Platform Engineer"
+    - "Senior Backend Engineer"
+    - "Geospatial Software Engineer"
+    - "Senior Geospatial Developer"
+    - "GIS Developer"
+    - "Lead Platform Engineer"
+
+  # Industry / domain keywords – used to prioritize geospatial companies
+  domain_keywords:
+    - "geospatial"
+    - "GIS"
+    - "remote sensing"
+    - "earth observation"
+    - "satellite"
+    - "mapping"
+    - "spatial data"
+    - "location intelligence"
+    - "geodata"
+    - "geoinformatics"
+    - "LiDAR"
+    - "drone"
+    - "UAV"
+    - "precision agriculture"
+    - "climate tech"
+
+  # Technical skill keywords to match in job descriptions
+  skill_keywords:
+    # Core languages & frameworks
+    - "Python"
+    - "FastAPI"
+    - "Flask"
+    - "Django"
+    - "SQLAlchemy"
+    # Databases
+    - "PostgreSQL"
+    - "PostGIS"
+    - "Redis"
+    - "TimescaleDB"
+    - "Elasticsearch"
+    # Cloud & infrastructure
+    - "AWS"
+    - "GCP"
+    - "Kubernetes"
+    - "Docker"
+    - "Helm"
+    - "Terraform"
+    - "CI/CD"
+    - "GitHub Actions"
+    # Data & streaming
+    - "Airflow"
+    - "Kafka"
+    - "Spark"
+    - "Dask"
+    - "Pandas"
+    - "NumPy"
+    - "xarray"
+    # Geospatial stack
+    - "geospatial"
+    - "GDAL"
+    - "Rasterio"
+    - "GeoPandas"
+    - "Shapely"
+    - "PostGIS"
+    - "STAC"
+    - "Cloud Optimized GeoTIFF"
+    - "Zarr"
+    # APIs & protocols
+    - "REST API"
+    - "gRPC"
+    - "GraphQL"
+    - "distributed systems"
+    - "microservices"
+    # AI / ML
+    - "LangGraph"
+    - "LangChain"
+    - "MLOps"
+    - "machine learning"
+
+  # ── Location Preferences (priority order) ────────────────────────
+  locations:
+    # Priority 1: Outside India — geospatial hubs
+    - name: "United Kingdom"
+      priority: 1
+    - name: "Remote"
+      priority: 1
+    - name: "Finland"
+      priority: 1
+
+    # Priority 2: India (except excluded companies)
+    - name: "India"
+      priority: 2
+    - name: "Bangalore"
+      priority: 1
+    - name: "Hyderabad"
+      priority: 2
+
+  # ── Companies to EXCLUDE ─────────────────────────────────────────
+  excluded_companies:
+    - "SatSure"
+    - "SatSure Analytics"
+    - "SatSure Analytics India"
+    - "Skyserve"
+    - "SkyServe"
+    - "Skyserve AI"
+    - "SkyServe AI"
+
+  # ── Target geospatial companies to actively search ───────────────
+  target_companies:
+    # International geospatial leaders
+    - "Planet Labs"
+    - "Maxar Technologies"
+    - "Esri"
+    - "Airbus Defence and Space"
+    - "Trimble"
+    - "Hexagon"
+    - "HERE Technologies"
+    - "TomTom"
+    - "Mapbox"
+    - "Google Earth Engine"
+    - "Orbital Insight"
+    - "Descartes Labs"
+    - "SpaceKnow"
+    - "Satellogic"
+    - "BlackBridge"
+    - "Nearmap"
+    - "EarthDaily Analytics"
+    - "Capella Space"
+    - "Umbra"
+    - "Iceye"
+    - "Spire Global"
+    - "UP42"
+    - "Picterra"
+    - "Development Seed"
+    - "Azavea"
+    - "Carto"
+    - "Foursquare"
+    - "Precisely"
+    - "Safe Software"
+    - "Overture Maps Foundation"
+    - "Sinergise"
+    - "EOX"
+    - "CloudEO"
+    - "LiveEO"
+    - "OroraTech"
+    - "Pixxel"
+    - "GalaxEye"
+    - "Takshashila"
+    - "BharatRohan"
+    - "CropIn"
+    - "AgNext"
+
+  # Search settings
+  max_results_per_search: 50
+  experience_level: "senior"       # senior | mid-senior | director
+  job_type: "full-time"
+  remote_preference: "any"         # remote | hybrid | onsite | any
+  date_posted: "past_week"         # past_24h | past_week | past_month | any
+
+# ── Job Scraper Settings ───────────────────────────────────────────
+job_scraper:
+  base_url: "https://www.linkedin.com/jobs/search/"
+  api_base_url: "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search"
+  headers:
+    User-Agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  request_delay_seconds: 2         # politeness delay between requests
+  max_retries: 3
+  timeout: 30
+
+# ── Resume Optimizer Settings ──────────────────────────────────────
+resume_optimizer:
+  max_keywords: 15
+  optimization_strategy: "keyword_matching"
+  output_dir: "output/resumes"
+
+# ── Application Submitter ──────────────────────────────────────────
+application_submitter:
+  submission_url: "https://www.linkedin.com/jobs/apply/"
+  timeout: 30
+  dry_run: true   # set to false when ready to actually submit
+  save_applications_log: "output/applications_log.csv"
+  easy_apply:
+    enabled: true
+    browser_profile_dir: "~/.linkedin-agent-profile"
+    delay_between_actions: 3     # seconds between clicks
+    delay_between_jobs: 5        # seconds between job applications
+    screenshot_on_error: true
+    max_jobs: 10                 # total applications per run
+
+# ── Telegram Notifications ─────────────────────────────────────────
+# To set up:
+#   1. Message @BotFather on Telegram → /newbot → copy the token
+#   2. Create a channel or group, add the bot as admin
+#   3. Get chat_id: send a message to the channel, then visit
+#      https://api.telegram.org/bot<TOKEN>/getUpdates
+#      Look for "chat":{"id":-100XXXXXXXXXX}
+telegram:
+  enabled: true
+  bot_token: "8643029486:AAEqV5HR3HD9ZoQL2Oy7f6qNCh1GXNOPqvo"
+  chat_id: "-1003873672658"
+  delay_between_messages: 1.5      # seconds between Telegram messages
+  max_messages_per_run: 25         # max jobs to send per run
+  send_resume_pdf: true            # attach tailored resume PDF with each job
+
+# ── CrewAI Agents ──────────────────────────────────────────────
+# Requires SERPER_API_KEY and OPENAI_API_KEY in environment or .env
+crewai:
+  enabled: false                    # enable with --crew flag
+  model: "gpt-4o-mini"             # LLM model for agent reasoning
+  temperature: 0.3                  # lower = more focused results
+  max_search_results: 10            # SerperDevTool results per query
+  verbose: true                     # show agent reasoning logs
+  max_company_research: 5           # max companies to research per run
+
+# ── LinkedIn Connection Requests ───────────────────────────────
+# WARNING: LinkedIn limits ~100 connection requests/week.
+# Recommended: max 5-10 per day to avoid account restrictions.
+linkedin_connect:
+  browser_profile_dir: "~/.linkedin-agent-profile"   # shared with Easy Apply
+  delay_between_actions: 3       # seconds between clicks within a profile
+  delay_between_requests: 15     # seconds between consecutive connection requests
+  max_per_run: 10                # hard cap per run
+  screenshot_on_error: true
+  log_path: "output/connections_log.csv"
+
+# ── Database ───────────────────────────────────────────────────
+database:
+  uri: "sqlite:///linkedin_resume_agent.db"

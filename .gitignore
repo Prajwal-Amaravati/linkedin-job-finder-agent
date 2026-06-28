@@ -1,0 +1,11 @@
+*.env
+*.pdf
+*.venv
+__pycache__/
+*.pytest_cache/
+*.vscode/
+*.ipynb_checkpoints/
+*.settings.yaml
+*.logs
+*output/*
+*.env*
